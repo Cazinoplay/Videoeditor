@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Video Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <div id="step1">
+        <h2>Выберите шаблон</h2>
+        <button class="template" data-template="1">Появляется</button>
+        <button class="template" data-template="2">Появляется исчезает</button>
+        <button class="template" data-template="3">Появляется остается</button>
+        <button class="template" data-template="4">По строчно</button>
+    </div>
+    <div id="step2" class="hidden">
+        <h2>Настройка фона</h2>
+        <input type="color" id="background-color">
+        <h3>Или введите URL GIF-изображения</h3>
+        <input type="text" id="background-gif-url" placeholder="Введите URL GIF-изображения">
+        <button id="find-background">Найти фон</button>
+        <button id="next-to-music">Далее</button>
+    </div>
+    <div id="step3" class="hidden">
+        <h2>Шаг 3: Загрузите музыку</h2>
+        <input type="file" id="music-upload" accept="audio/*">
+        <button id="next-to-text">Далее</button>
+    </div>
+    <div id="step4" class="hidden">
+        <h2>Шаг 4: Введите текст</h2>
+        <div id="text-entries"></div>
+        <input type="text" id="user-text" placeholder="Введите ваш текст">
+        <select id="animation-select">
+            <option value="fade-in">Появление</option>
+            <option value="fade-out">Исчезание</option>
+            <option value="slide-in">Слайд</option>
+        </select>
+        <label>
+            <input type="checkbox" id="bold-text"> Жирный
+        </label>
+        <label>
+            <input type="checkbox" id="italic-text"> Курсив
+        </label>
+        <label>
+            <input type="checkbox" id="outline-text"> Обводка
+        </label>
+        <button id="add-text">Добавить текст</button>
+        <button id="generate-video">Создать видео</button>
+    </div>
+    <div id="preview" class="hidden">
+        <h2>Предпросмотр видео</h2>
+        <div id="video-container">
+            <div id="text-display"></div>
+        </div>
+        <audio id="background-music" controls></audio>
+        <button id="download-video">Скачать видео</button>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.5/dist/ffmpeg.min.js" crossorigin="anonymous"></script>
+<script src="scripts.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("find-background").addEventListener("click", () => {
+            const searchUrl = "https://www.google.com/search?tbm=isch&q=gif+background";
+            window.open(searchUrl, "_blank");
+        });
+    });
+</script>
+</body>
+</html>
